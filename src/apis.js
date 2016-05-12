@@ -37,7 +37,7 @@ let Apis = {
   never_play_again : 'j/mine/playlist'
 }
 
-for(api in Apis) {
+for(let api in Apis) {
   Apis[api] = HOST_URL + Apis[api]
 }
 

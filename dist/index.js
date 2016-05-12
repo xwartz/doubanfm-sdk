@@ -4,10 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _util = require('util');
-
-var _util2 = _interopRequireDefault(_util);
-
 var _request = require('request');
 
 var _request2 = _interopRequireDefault(_request);
@@ -38,7 +34,7 @@ var isVip = false;
 //开启cookie
 var j = _request2.default.jar();
 
-_request2.default.defaults({
+var req = _request2.default.defaults({
   jar: j,
   headers: _header2.default
 });
@@ -64,7 +60,7 @@ var fn = SDK.prototype;
 //获取验证码id
 fn.captcha_id = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['captcha_id'],
     r: random()
   }, function (err, res, body) {
@@ -77,7 +73,7 @@ fn.captcha_id = function (opt, cb) {
 //获取验证码图片 Content-Type:image/jpeg
 fn.captcha_pic = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['captcha_pic'],
     r: random(),
     qs: {
@@ -88,7 +84,7 @@ fn.captcha_pic = function (opt, cb) {
     if (err) return cb(err);
     var data = {
       id: opt.id,
-      url: _util2.default.format('%s?size=m&id=%s', _apis2.default['captcha_pic'], opt.id),
+      url: _apis2.default['captcha_pic'] + '?size=m&id=' + opt.id,
       body: body
     };
     cb(null, data);
@@ -98,7 +94,7 @@ fn.captcha_pic = function (opt, cb) {
 //登录
 fn.login = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['login'],
     method: 'POST',
     form: true,
@@ -133,7 +129,7 @@ fn.setCookie = function (cookie_string, cb) {
 fn.logout = function (cb) {
   cb = cb || noop;
   var j = _request2.default.jar();
-  _request2.default.defaults({
+  req = _request2.default.defaults({
     jar: j
   });
   cb();
@@ -156,7 +152,7 @@ fn.personal_channels = function (opt, cb) {
 //获取热门频道
 fn.hot_channels = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['hot_channels'],
     qs: {
       start: opt.start || 1,
@@ -179,7 +175,7 @@ fn.hot_channels = function (opt, cb) {
 //获取上升最快的频道
 fn.up_trending_channels = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['up_trending_channels'],
     qs: {
       start: opt.start || 1,
@@ -202,7 +198,7 @@ fn.up_trending_channels = function (opt, cb) {
 //根据流派查询频道
 fn.genre_channels = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['genre_channels'],
     r: random(),
     qs: {
@@ -226,7 +222,7 @@ fn.genre_channels = function (opt, cb) {
 //查询频道详细信息
 fn.channel_detail = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['channel_detail'],
     r: random(),
     qs: {
@@ -248,7 +244,7 @@ fn.channel_detail = function (opt, cb) {
 //搜索频道
 fn.search = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['search'],
     r: random(),
     qs: {
@@ -272,7 +268,7 @@ fn.search = function (opt, cb) {
 //根据频道获取歌曲
 fn.songs = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['songs'],
     r: random(),
     qs: {
@@ -335,7 +331,7 @@ fn.personal_like_channel = function (opt, cb) {
 //收藏频道
 fn.fav_channel = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['fav_channel'],
     r: random(),
     qs: {
@@ -357,7 +353,7 @@ fn.fav_channel = function (opt, cb) {
 //取消收藏频道
 fn.unfav_channel = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['unfav_channel'],
     r: random(),
     qs: {
@@ -379,7 +375,7 @@ fn.unfav_channel = function (opt, cb) {
 //是否已收藏频道
 fn.is_fav_channel = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['is_fav_channel'],
     r: random(),
     cid: opt.channel_id
@@ -399,7 +395,7 @@ fn.is_fav_channel = function (opt, cb) {
 //我收藏的频道
 fn.fav_channels = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['fav_channels'],
     r: random()
   }, function (err, res, body) {
@@ -414,7 +410,7 @@ fn.fav_channels = function (opt, cb) {
 //换频率报告
 fn.change_channel = function (opt, cb) {
   cb = cb || noop;
-  (0, _request2.default)({
+  req({
     url: _apis2.default['change_channel'],
     r: random(),
     fcid: opt.fcid,

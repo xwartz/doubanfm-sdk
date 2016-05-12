@@ -1,4 +1,3 @@
-import util from 'util'
 import request from 'request'
 
 //自定义请求头部
@@ -17,7 +16,7 @@ const isVip = false
 //开启cookie
 const j = request.jar()
 
-request.defaults({
+let req = request.defaults({
   jar : j,
   headers : customHeaders
 })
@@ -41,7 +40,7 @@ let fn = SDK.prototype
 //获取验证码id
 fn.captcha_id = (opt,cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['captcha_id'],
     r : random()
   }, (err, res, body) => {
@@ -54,7 +53,7 @@ fn.captcha_id = (opt,cb) => {
 //获取验证码图片 Content-Type:image/jpeg
 fn.captcha_pic = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['captcha_pic'],
     r : random(),
     qs : {
@@ -65,7 +64,7 @@ fn.captcha_pic = (opt, cb) => {
     if(err) return cb(err)
     const data = {
       id : opt.id,
-      url : util.format('%s?size=m&id=%s',Apis['captcha_pic'], opt.id),
+      url : `${Apis['captcha_pic']}?size=m&id=${opt.id}`,
       body : body
     }
     cb(null, data)
@@ -75,7 +74,7 @@ fn.captcha_pic = (opt, cb) => {
 //登录
 fn.login = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['login'],
     method : 'POST',
     form : true,
@@ -110,7 +109,7 @@ fn.setCookie = (cookie_string, cb) => {
 fn.logout = (cb) => {
   cb = cb || noop
   const j = request.jar()
-  request.defaults({
+  req = request.defaults({
     jar : j
   })
   cb()
@@ -133,7 +132,7 @@ fn.personal_channels = (opt, cb) => {
 //获取热门频道
 fn.hot_channels = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['hot_channels'],
     qs : {
       start : opt.start || 1,
@@ -156,7 +155,7 @@ fn.hot_channels = (opt, cb) => {
 //获取上升最快的频道
 fn.up_trending_channels = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['up_trending_channels'],
     qs : {
       start : opt.start || 1,
@@ -179,7 +178,7 @@ fn.up_trending_channels = (opt, cb) => {
 //根据流派查询频道
 fn.genre_channels = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['genre_channels'],
     r : random(),
     qs : {
@@ -203,7 +202,7 @@ fn.genre_channels = (opt, cb) => {
 //查询频道详细信息
 fn.channel_detail = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['channel_detail'],
     r : random(),
     qs : {
@@ -225,7 +224,7 @@ fn.channel_detail = (opt, cb) => {
 //搜索频道
 fn.search = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['search'],
     r : random(),
     qs : {
@@ -249,7 +248,7 @@ fn.search = (opt, cb) => {
 //根据频道获取歌曲
 fn.songs = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['songs'],
     r : random(),
     qs : {
@@ -312,7 +311,7 @@ fn.personal_like_channel = (opt,cb) => {
 //收藏频道
 fn.fav_channel = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['fav_channel'],
     r : random(),
     qs : {
@@ -334,7 +333,7 @@ fn.fav_channel = (opt, cb) => {
 //取消收藏频道
 fn.unfav_channel = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['unfav_channel'],
     r : random(),
     qs : {
@@ -356,7 +355,7 @@ fn.unfav_channel = (opt, cb) => {
 //是否已收藏频道
 fn.is_fav_channel = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['is_fav_channel'],
     r : random(),
     cid : opt.channel_id
@@ -376,7 +375,7 @@ fn.is_fav_channel = (opt, cb) => {
 //我收藏的频道
 fn.fav_channels = (opt, cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['fav_channels'],
     r : random()
   }, (err, res, body) => {
@@ -391,7 +390,7 @@ fn.fav_channels = (opt, cb) => {
 //换频率报告
 fn.change_channel = (opt,cb) => {
   cb = cb || noop
-  request({
+  req({
     url : Apis['change_channel'],
     r : random(),
     fcid : opt.fcid,
