@@ -1,4 +1,4 @@
-export HOST_URL = 'http://douban.fm/'
+export const HOST_URL = 'http://douban.fm/'
 
 let Apis = {
   //验证码id
@@ -41,4 +41,4 @@ for(api in Apis) {
   Apis[api] = HOST_URL + Apis[api]
 }
 
-export Apis
+export default Apis

@@ -12,11 +12,13 @@ var _request = require('request');
 
 var _request2 = _interopRequireDefault(_request);
 
-var _header = require('./lib/header');
+var _header = require('./header');
 
 var _header2 = _interopRequireDefault(_header);
 
-var _apis = require('./lib/apis');
+var _apis = require('./apis');
+
+var _apis2 = _interopRequireDefault(_apis);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63,7 +65,7 @@ var fn = SDK.prototype;
 fn.captcha_id = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['captcha_id'],
+    url: _apis2.default['captcha_id'],
     r: random()
   }, function (err, res, body) {
     if (err) return cb(err);
@@ -76,7 +78,7 @@ fn.captcha_id = function (opt, cb) {
 fn.captcha_pic = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['captcha_pic'],
+    url: _apis2.default['captcha_pic'],
     r: random(),
     qs: {
       size: 'm',
@@ -86,7 +88,7 @@ fn.captcha_pic = function (opt, cb) {
     if (err) return cb(err);
     var data = {
       id: opt.id,
-      url: _util2.default.format('%s?size=m&id=%s', _apis.Apis['captcha_pic'], opt.id),
+      url: _util2.default.format('%s?size=m&id=%s', _apis2.default['captcha_pic'], opt.id),
       body: body
     };
     cb(null, data);
@@ -97,7 +99,7 @@ fn.captcha_pic = function (opt, cb) {
 fn.login = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['login'],
+    url: _apis2.default['login'],
     method: 'POST',
     form: true,
     qs: {
@@ -155,7 +157,7 @@ fn.personal_channels = function (opt, cb) {
 fn.hot_channels = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['hot_channels'],
+    url: _apis2.default['hot_channels'],
     qs: {
       start: opt.start || 1,
       limit: opt.limit || 6
@@ -178,7 +180,7 @@ fn.hot_channels = function (opt, cb) {
 fn.up_trending_channels = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['up_trending_channels'],
+    url: _apis2.default['up_trending_channels'],
     qs: {
       start: opt.start || 1,
       limit: opt.limit || 10
@@ -201,7 +203,7 @@ fn.up_trending_channels = function (opt, cb) {
 fn.genre_channels = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['genre_channels'],
+    url: _apis2.default['genre_channels'],
     r: random(),
     qs: {
       start: opt.start || 1,
@@ -225,7 +227,7 @@ fn.genre_channels = function (opt, cb) {
 fn.channel_detail = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['channel_detail'],
+    url: _apis2.default['channel_detail'],
     r: random(),
     qs: {
       channel_id: opt.channel_id
@@ -247,7 +249,7 @@ fn.channel_detail = function (opt, cb) {
 fn.search = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['search'],
+    url: _apis2.default['search'],
     r: random(),
     qs: {
       query: opt.query,
@@ -271,7 +273,7 @@ fn.search = function (opt, cb) {
 fn.songs = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['songs'],
+    url: _apis2.default['songs'],
     r: random(),
     qs: {
       from: 'mainsite',
@@ -334,7 +336,7 @@ fn.personal_like_channel = function (opt, cb) {
 fn.fav_channel = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['fav_channel'],
+    url: _apis2.default['fav_channel'],
     r: random(),
     qs: {
       cid: opt.channel_id
@@ -356,7 +358,7 @@ fn.fav_channel = function (opt, cb) {
 fn.unfav_channel = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['unfav_channel'],
+    url: _apis2.default['unfav_channel'],
     r: random(),
     qs: {
       cid: opt.channel_id
@@ -378,7 +380,7 @@ fn.unfav_channel = function (opt, cb) {
 fn.is_fav_channel = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['is_fav_channel'],
+    url: _apis2.default['is_fav_channel'],
     r: random(),
     cid: opt.channel_id
   }, function (err, res, body) {
@@ -398,7 +400,7 @@ fn.is_fav_channel = function (opt, cb) {
 fn.fav_channels = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['fav_channels'],
+    url: _apis2.default['fav_channels'],
     r: random()
   }, function (err, res, body) {
     if (err) return cb(err);
@@ -413,7 +415,7 @@ fn.fav_channels = function (opt, cb) {
 fn.change_channel = function (opt, cb) {
   cb = cb || noop;
   (0, _request2.default)({
-    url: _apis.Apis['change_channel'],
+    url: _apis2.default['change_channel'],
     r: random(),
     fcid: opt.fcid,
     tcid: opt.tcid,

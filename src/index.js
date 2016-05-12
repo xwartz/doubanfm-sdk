@@ -2,9 +2,9 @@ import util from 'util'
 import request from 'request'
 
 //自定义请求头部
-import customHeaders from './lib/header'
+import customHeaders from './header'
 //api
-import { Apis, HOST_URL } from './lib/apis'
+import Apis, { HOST_URL } from './apis'
 
 //私人频道id
 const PERSONAL_CHANNEL_ID = 0
