@@ -1,0 +1,20 @@
+{
+  "name": "doubanfm-sdk",
+  "version": "1.0.0",
+  "description": "douban fm web sdk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@xwartz.github.com:xwartz/doubanfm-sdk.git"
+  },
+  "keywords": [
+    "douban",
+    "fm",
+    "sdk"
+  ],
+  "author": "xwartz",
+  "license": "MIT"
+}
