@@ -29,8 +29,6 @@ var PERSONAL_CHANNEL_ID = 0;
 // api
 var PERSONAL_LIKE_CHANNEL_ID = -3;
 
-var isVip = false;
-
 // 开启cookie
 var j = _request2.default.jar();
 
@@ -46,7 +44,7 @@ var random = function random() {
 
 var safeParse = function safeParse(res) {
   res = res.toJSON();
-  if (res.statusCode == 200) {
+  if (res.statusCode === 200) {
     return JSON.parse(res.body);
   } else {
     console.error(res.request.uri, res.body);
@@ -119,9 +117,9 @@ fn.login = function (opt, cb) {
   });
 };
 
-fn.setCookie = function (cookie_string, cb) {
+fn.setCookie = function (cookie, cb) {
   cb = cb || noop;
-  j.setCookie(cookie_string, _apis.HOST_URL);
+  j.setCookie(cookie, _apis.HOST_URL);
   cb();
 };
 
@@ -148,7 +146,7 @@ fn.channels = function (opt, cb) {
     body = safeParse(res);
     if (body) {
       var result = {};
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.channels;
       }
       cb(null, result);
@@ -171,7 +169,7 @@ fn.hot_channels = function (opt, cb) {
     body = safeParse(res);
     if (body) {
       var result = [];
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.channels;
       }
       cb(null, result);
@@ -194,7 +192,7 @@ fn.up_trending_channels = function (opt, cb) {
     if (body) {
       body = safeParse(res);
       var result = [];
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.channels;
       }
       cb(null, result);
@@ -218,7 +216,7 @@ fn.genre_channels = function (opt, cb) {
     body = safeParse(res);
     if (body) {
       var result = [];
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.channels;
       }
       cb(null, result);
@@ -240,7 +238,7 @@ fn.channel_detail = function (opt, cb) {
     body = safeParse(res);
     if (body) {
       var result = null;
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.channels;
       }
       cb(null, result);
@@ -264,7 +262,7 @@ fn.search = function (opt, cb) {
     body = safeParse(res);
     if (body) {
       var result = {};
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data;
       }
       cb(null, result);
@@ -293,7 +291,7 @@ fn.songs = function (opt, cb) {
     body = safeParse(res);
     if (body) {
       var result = [];
-      if (body.r == 0) {
+      if (body.r === 0) {
         result = body.song;
       }
       cb(null, result);
@@ -307,7 +305,7 @@ fn.skip = function (opt, cb) {
   fn.songs(opt, cb);
 };
 
-//加红心
+// 加红心
 fn.star = function (opt, cb) {
   opt.type = 'r';
   fn.songs(opt, cb);
@@ -351,7 +349,7 @@ fn.fav_channel = function (opt, cb) {
     body = safeParse(res);
     if (body) {
       var result = 0;
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.res;
       }
       cb(null, result);
@@ -373,7 +371,7 @@ fn.unfav_channel = function (opt, cb) {
     body = safeParse(res);
     if (body) {
       var result = 0;
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.res;
       }
       cb(null, result);
@@ -393,7 +391,7 @@ fn.is_fav_channel = function (opt, cb) {
     body = safeParse(res);
     if (body) {
       var result = false;
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.res.is_fav;
       }
       cb(null, result);
@@ -433,7 +431,6 @@ fn.change_channel = function (opt, cb) {
 
 // 获取用户信息
 fn.user_info = function (opt, cb) {
-  var self = this;
   cb = cb || noop;
   req({
     url: _apis2.default['user_info'],
@@ -450,7 +447,6 @@ fn.user_info = function (opt, cb) {
 
 // 获取用户信息
 fn.lyric = function (opt, cb) {
-  var self = this;
   cb = cb || noop;
   req({
     url: _apis2.default['lyric'],

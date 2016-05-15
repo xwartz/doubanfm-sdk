@@ -14,8 +14,6 @@ const PERSONAL_CHANNEL_ID = 0
 // 红心频道id
 const PERSONAL_LIKE_CHANNEL_ID = -3
 
-const isVip = false
-
 // 开启cookie
 const j = request.jar()
 
@@ -29,7 +27,7 @@ const random = () => Date.now()
 
 const safeParse = (res) => {
   res = res.toJSON()
-  if (res.statusCode == 200) {
+  if (res.statusCode === 200) {
     return JSON.parse(res.body)
   } else {
     console.error(res.request.uri, res.body)
@@ -102,9 +100,9 @@ fn.login = (opt, cb) => {
   })
 }
 
-fn.setCookie = (cookie_string, cb) => {
+fn.setCookie = (cookie, cb) => {
   cb = cb || noop
-  j.setCookie(cookie_string, HOST_URL)
+  j.setCookie(cookie, HOST_URL)
   cb()
 }
 
@@ -124,14 +122,14 @@ fn.channels = (opt, cb) => {
   req({
     url: Apis['channels'],
     qs: {
-      specific: opt.specific || 'all',
+      specific: opt.specific || 'all'
     }
   }, (err, res, body) => {
     if (err) return cb(err)
     body = safeParse(res)
     if (body) {
       let result = {}
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.channels
       }
       cb(null, result)
@@ -154,7 +152,7 @@ fn.hot_channels = (opt, cb) => {
     body = safeParse(res)
     if (body) {
       let result = []
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.channels
       }
       cb(null, result)
@@ -177,7 +175,7 @@ fn.up_trending_channels = (opt, cb) => {
     if (body) {
       body = safeParse(res)
       let result = []
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.channels
       }
       cb(null, result)
@@ -201,7 +199,7 @@ fn.genre_channels = (opt, cb) => {
     body = safeParse(res)
     if (body) {
       let result = []
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.channels
       }
       cb(null, result)
@@ -223,7 +221,7 @@ fn.channel_detail = (opt, cb) => {
     body = safeParse(res)
     if (body) {
       let result = null
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.channels
       }
       cb(null, result)
@@ -247,7 +245,7 @@ fn.search = (opt, cb) => {
     body = safeParse(res)
     if (body) {
       let result = {}
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data
       }
       cb(null, result)
@@ -276,7 +274,7 @@ fn.songs = (opt, cb) => {
     body = safeParse(res)
     if (body) {
       let result = []
-      if (body.r == 0) {
+      if (body.r === 0) {
         result = body.song
       }
       cb(null, result)
@@ -290,7 +288,7 @@ fn.skip = (opt, cb) => {
   fn.songs(opt, cb)
 }
 
-//加红心
+// 加红心
 fn.star = (opt, cb) => {
   opt.type = 'r'
   fn.songs(opt, cb)
@@ -327,14 +325,14 @@ fn.fav_channel = (opt, cb) => {
     url: Apis['fav_channel'],
     r: random(),
     qs: {
-      cid: opt.channel_id,
+      cid: opt.channel_id
     }
   }, (err, res, body) => {
     if (err) return cb(err)
     body = safeParse(res)
     if (body) {
       let result = 0
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.res
       }
       cb(null, result)
@@ -349,14 +347,14 @@ fn.unfav_channel = (opt, cb) => {
     url: Apis['unfav_channel'],
     r: random(),
     qs: {
-      cid: opt.channel_id,
+      cid: opt.channel_id
     }
   }, (err, res, body) => {
     if (err) return cb(err)
     body = safeParse(res)
     if (body) {
       let result = 0
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.res
       }
       cb(null, result)
@@ -376,7 +374,7 @@ fn.is_fav_channel = (opt, cb) => {
     body = safeParse(res)
     if (body) {
       let result = false
-      if (body.status == true) {
+      if (body.status === true) {
         result = body.data.res.is_fav
       }
       cb(null, result)
@@ -415,8 +413,7 @@ fn.change_channel = (opt, cb) => {
 }
 
 // 获取用户信息
-fn.user_info = function(opt, cb) {
-  var self = this
+fn.user_info = (opt, cb) => {
   cb = cb || noop
   req({
     url: Apis['user_info'],
@@ -432,8 +429,7 @@ fn.user_info = function(opt, cb) {
 }
 
 // 获取用户信息
-fn.lyric = function(opt, cb) {
-  var self = this
+fn.lyric = (opt, cb) => {
   cb = cb || noop
   req({
     url: Apis['lyric'],
@@ -452,5 +448,4 @@ fn.lyric = function(opt, cb) {
   })
 }
 
-export
-default SDK
+export default SDK
