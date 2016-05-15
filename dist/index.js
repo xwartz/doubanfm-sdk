@@ -18,20 +18,20 @@ var _apis2 = _interopRequireDefault(_apis);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//私人频道id
+// 私人频道id
 
 
-//自定义请求头部
+// 自定义请求头部
 var PERSONAL_CHANNEL_ID = 0;
 
-//红心频道id
+// 红心频道id
 
-//api
+// api
 var PERSONAL_LIKE_CHANNEL_ID = -3;
 
 var isVip = false;
 
-//开启cookie
+// 开启cookie
 var j = _request2.default.jar();
 
 var req = _request2.default.defaults({
@@ -57,7 +57,7 @@ var SDK = function SDK() {};
 
 var fn = SDK.prototype;
 
-//获取验证码id
+// 获取验证码id
 fn.captcha_id = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -70,7 +70,7 @@ fn.captcha_id = function (opt, cb) {
   });
 };
 
-//获取验证码图片 Content-Type:image/jpeg
+// 获取验证码图片 Content-Type:image/jpeg
 fn.captcha_pic = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -91,7 +91,7 @@ fn.captcha_pic = function (opt, cb) {
   });
 };
 
-//登录
+// 登录
 fn.login = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -125,7 +125,7 @@ fn.setCookie = function (cookie_string, cb) {
   cb();
 };
 
-//退出登录
+// 退出登录
 fn.logout = function (cb) {
   cb = cb || noop;
   var j = _request2.default.jar();
@@ -135,7 +135,7 @@ fn.logout = function (cb) {
   cb();
 };
 
-//获取公共频道列表
+// 获取公共频道列表
 fn.personal_channels = function (opt, cb) {
   cb = cb || noop;
   var result = [{
@@ -149,7 +149,7 @@ fn.personal_channels = function (opt, cb) {
   return result;
 };
 
-//获取热门频道
+// 获取热门频道
 fn.hot_channels = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -172,7 +172,7 @@ fn.hot_channels = function (opt, cb) {
   });
 };
 
-//获取上升最快的频道
+// 获取上升最快的频道
 fn.up_trending_channels = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -195,7 +195,7 @@ fn.up_trending_channels = function (opt, cb) {
   });
 };
 
-//根据流派查询频道
+// 根据流派查询频道
 fn.genre_channels = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -219,7 +219,7 @@ fn.genre_channels = function (opt, cb) {
   });
 };
 
-//查询频道详细信息
+// 查询频道详细信息
 fn.channel_detail = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -241,7 +241,7 @@ fn.channel_detail = function (opt, cb) {
   });
 };
 
-//搜索频道
+// 搜索频道
 fn.search = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -265,7 +265,7 @@ fn.search = function (opt, cb) {
   });
 };
 
-//根据频道获取歌曲
+// 根据频道获取歌曲
 fn.songs = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -292,43 +292,43 @@ fn.songs = function (opt, cb) {
   });
 };
 
-//跳过此曲(下一首)
+// 跳过此曲(下一首)
 fn.skip = function (opt, cb) {
   opt.type = 's';
-  undefined.songs(opt, cb);
+  fn.songs(opt, cb);
 };
 
 //加红心
 fn.star = function (opt, cb) {
   opt.type = 'r';
-  undefined.songs(opt, cb);
+  fn.songs(opt, cb);
 };
 
-//取消红心
+// 取消红心
 fn.unstar = function (opt, cb) {
   opt.type = 'u';
-  undefined.songs(opt, cb);
+  fn.songs(opt, cb);
 };
 
-//不再播放
+// 不再播放
 fn.never_play_again = function (opt, cb) {
   opt.type = 'b';
-  undefined.songs(opt, cb);
+  fn.songs(opt, cb);
 };
 
-//获取私人频道歌曲
+// 获取私人频道歌曲
 fn.personal_channel = function (opt, cb) {
   opt.channel_id = PERSONAL_CHANNEL_ID;
-  undefined.songs(opt, cb);
+  fn.songs(opt, cb);
 };
 
-//获取红心频道歌曲
+// 获取红心频道歌曲
 fn.personal_like_channel = function (opt, cb) {
   opt.channel_id = PERSONAL_LIKE_CHANNEL_ID;
-  undefined.songs(opt, cb);
+  fn.songs(opt, cb);
 };
 
-//收藏频道
+// 收藏频道
 fn.fav_channel = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -350,7 +350,7 @@ fn.fav_channel = function (opt, cb) {
   });
 };
 
-//取消收藏频道
+// 取消收藏频道
 fn.unfav_channel = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -372,7 +372,7 @@ fn.unfav_channel = function (opt, cb) {
   });
 };
 
-//是否已收藏频道
+// 是否已收藏频道
 fn.is_fav_channel = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -392,7 +392,7 @@ fn.is_fav_channel = function (opt, cb) {
   });
 };
 
-//我收藏的频道
+// 我收藏的频道
 fn.fav_channels = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -407,7 +407,7 @@ fn.fav_channels = function (opt, cb) {
   });
 };
 
-//换频率报告
+// 换频率报告
 fn.change_channel = function (opt, cb) {
   cb = cb || noop;
   req({
@@ -419,6 +419,44 @@ fn.change_channel = function (opt, cb) {
   }, function (err, res, body) {
     if (err) return cb(err);
     cb(null, body);
+  });
+};
+
+// 获取用户信息
+fn.user_info = function (opt, cb) {
+  var self = this;
+  cb = cb || noop;
+  req({
+    url: _apis2.default['user_info'],
+    method: 'GET',
+    form: true
+  }, function (err, res, body) {
+    if (err) return cb(err);
+    body = safeParse(res);
+    if (body) {
+      cb(null, body);
+    }
+  });
+};
+
+// 获取用户信息
+fn.lyric = function (opt, cb) {
+  var self = this;
+  cb = cb || noop;
+  req({
+    url: _apis2.default['lyric'],
+    method: 'GET',
+    form: true,
+    qs: {
+      sid: opt.sid,
+      ssid: opt.ssid
+    }
+  }, function (err, res, body) {
+    if (err) return cb(err);
+    body = safeParse(res);
+    if (body) {
+      cb(null, body);
+    }
   });
 };
 

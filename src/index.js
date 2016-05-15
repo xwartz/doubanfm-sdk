@@ -1,19 +1,19 @@
 import request from 'request'
 
-//自定义请求头部
+// 自定义请求头部
 import customHeaders from './header'
-//api
+// api
 import Apis, { HOST_URL } from './apis'
 
-//私人频道id
+// 私人频道id
 const PERSONAL_CHANNEL_ID = 0
 
-//红心频道id
+// 红心频道id
 const PERSONAL_LIKE_CHANNEL_ID = -3
 
 const isVip = false
 
-//开启cookie
+// 开启cookie
 const j = request.jar()
 
 let req = request.defaults({
@@ -37,7 +37,7 @@ const SDK = () => {}
 
 let fn = SDK.prototype
 
-//获取验证码id
+// 获取验证码id
 fn.captcha_id = (opt,cb) => {
   cb = cb || noop
   req({
@@ -50,7 +50,7 @@ fn.captcha_id = (opt,cb) => {
   })
 }
 
-//获取验证码图片 Content-Type:image/jpeg
+// 获取验证码图片 Content-Type:image/jpeg
 fn.captcha_pic = (opt, cb) => {
   cb = cb || noop
   req({
@@ -71,7 +71,7 @@ fn.captcha_pic = (opt, cb) => {
   })
 }
 
-//登录
+// 登录
 fn.login = (opt, cb) => {
   cb = cb || noop
   req({
@@ -105,7 +105,7 @@ fn.setCookie = (cookie_string, cb) => {
   cb()
 }
 
-//退出登录
+// 退出登录
 fn.logout = (cb) => {
   cb = cb || noop
   const j = request.jar()
@@ -115,7 +115,7 @@ fn.logout = (cb) => {
   cb()
 }
 
-//获取公共频道列表
+// 获取公共频道列表
 fn.personal_channels = (opt, cb) => {
   cb = cb || noop
   const result = [{
@@ -129,7 +129,7 @@ fn.personal_channels = (opt, cb) => {
   return result
 }
 
-//获取热门频道
+// 获取热门频道
 fn.hot_channels = (opt, cb) => {
   cb = cb || noop
   req({
@@ -152,7 +152,7 @@ fn.hot_channels = (opt, cb) => {
   })
 }
 
-//获取上升最快的频道
+// 获取上升最快的频道
 fn.up_trending_channels = (opt, cb) => {
   cb = cb || noop
   req({
@@ -175,7 +175,7 @@ fn.up_trending_channels = (opt, cb) => {
   })
 }
 
-//根据流派查询频道
+// 根据流派查询频道
 fn.genre_channels = (opt, cb) => {
   cb = cb || noop
   req({
@@ -199,7 +199,7 @@ fn.genre_channels = (opt, cb) => {
   })
 }
 
-//查询频道详细信息
+// 查询频道详细信息
 fn.channel_detail = (opt, cb) => {
   cb = cb || noop
   req({
@@ -221,7 +221,7 @@ fn.channel_detail = (opt, cb) => {
   })
 }
 
-//搜索频道
+// 搜索频道
 fn.search = (opt, cb) => {
   cb = cb || noop
   req({
@@ -245,7 +245,7 @@ fn.search = (opt, cb) => {
   })
 }
 
-//根据频道获取歌曲
+// 根据频道获取歌曲
 fn.songs = (opt, cb) => {
   cb = cb || noop
   req({
@@ -272,43 +272,43 @@ fn.songs = (opt, cb) => {
   })
 }
 
-//跳过此曲(下一首)
+// 跳过此曲(下一首)
 fn.skip = (opt,cb) => {
   opt.type = 's'
-  this.songs(opt, cb)
+  fn.songs(opt, cb)
 }
 
 //加红心
 fn.star = (opt, cb) => {
   opt.type = 'r'
-  this.songs(opt, cb)
+  fn.songs(opt, cb)
 }
 
-//取消红心
+// 取消红心
 fn.unstar = (opt, cb) => {
   opt.type = 'u'
-  this.songs(opt, cb)
+  fn.songs(opt, cb)
 }
 
-//不再播放
+// 不再播放
 fn.never_play_again = (opt, cb) => {
   opt.type = 'b'
-  this.songs(opt, cb)
+  fn.songs(opt, cb)
 }
 
-//获取私人频道歌曲
+// 获取私人频道歌曲
 fn.personal_channel = (opt,cb) => {
   opt.channel_id = PERSONAL_CHANNEL_ID
-  this.songs(opt, cb)
+  fn.songs(opt, cb)
 }
 
-//获取红心频道歌曲
+// 获取红心频道歌曲
 fn.personal_like_channel = (opt,cb) => {
   opt.channel_id = PERSONAL_LIKE_CHANNEL_ID
-  this.songs(opt, cb)
+  fn.songs(opt, cb)
 }
 
-//收藏频道
+// 收藏频道
 fn.fav_channel = (opt, cb) => {
   cb = cb || noop
   req({
@@ -330,7 +330,7 @@ fn.fav_channel = (opt, cb) => {
   })
 }
 
-//取消收藏频道
+// 取消收藏频道
 fn.unfav_channel = (opt, cb) => {
   cb = cb || noop
   req({
@@ -352,7 +352,7 @@ fn.unfav_channel = (opt, cb) => {
   })
 }
 
-//是否已收藏频道
+// 是否已收藏频道
 fn.is_fav_channel = (opt, cb) => {
   cb = cb || noop
   req({
@@ -372,7 +372,7 @@ fn.is_fav_channel = (opt, cb) => {
   })
 }
 
-//我收藏的频道
+// 我收藏的频道
 fn.fav_channels = (opt, cb) => {
   cb = cb || noop
   req({
@@ -387,7 +387,7 @@ fn.fav_channels = (opt, cb) => {
   })
 }
 
-//换频率报告
+// 换频率报告
 fn.change_channel = (opt,cb) => {
   cb = cb || noop
   req({
@@ -401,5 +401,44 @@ fn.change_channel = (opt,cb) => {
     cb(null, body)
   })
 }
+
+// 获取用户信息
+fn.user_info = function(opt, cb) {
+  var self = this
+  cb = cb || noop
+  req({
+    url: Apis['user_info'],
+    method : 'GET',
+    form : true
+  }, (err, res, body) => {
+    if(err) return cb(err)
+    body = safeParse(res)
+    if(body) {
+      cb(null, body)
+    }
+  })
+}
+
+// 获取用户信息
+fn.lyric = function(opt, cb) {
+  var self = this
+  cb = cb || noop
+  req({
+    url: Apis['lyric'],
+    method : 'GET',
+    form : true,
+    qs: {
+      sid: opt.sid,
+      ssid: opt.ssid
+    }
+  }, (err, res, body) => {
+    if(err) return cb(err)
+    body = safeParse(res)
+    if(body) {
+      cb(null, body)
+    }
+  })
+}
+
 
 export default SDK
