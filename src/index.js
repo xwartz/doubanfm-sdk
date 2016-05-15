@@ -3,7 +3,10 @@ import request from 'request'
 // 自定义请求头部
 import customHeaders from './header'
 // api
-import Apis, { HOST_URL } from './apis'
+import Apis, {
+  HOST_URL
+}
+from './apis'
 
 // 私人频道id
 const PERSONAL_CHANNEL_ID = 0
@@ -17,8 +20,8 @@ const isVip = false
 const j = request.jar()
 
 let req = request.defaults({
-  jar : j,
-  headers : customHeaders
+  jar: j,
+  headers: customHeaders
 })
 
 const noop = () => {}
@@ -26,7 +29,7 @@ const random = () => Date.now()
 
 const safeParse = (res) => {
   res = res.toJSON()
-  if(res.statusCode == 200) {
+  if (res.statusCode == 200) {
     return JSON.parse(res.body)
   } else {
     console.error(res.request.uri, res.body)
@@ -38,14 +41,14 @@ const SDK = () => {}
 let fn = SDK.prototype
 
 // 获取验证码id
-fn.captcha_id = (opt,cb) => {
+fn.captcha_id = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['captcha_id'],
-    r : random()
+    url: Apis['captcha_id'],
+    r: random()
   }, (err, res, body) => {
-    if(err) return cb(err)
-    const id = body.replace(/"/g,'')
+    if (err) return cb(err)
+    const id = body.replace(/"/g, '')
     cb(null, id)
   })
 }
@@ -54,18 +57,18 @@ fn.captcha_id = (opt,cb) => {
 fn.captcha_pic = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['captcha_pic'],
-    r : random(),
-    qs : {
-      size : 'm',
-      id : opt.id
+    url: Apis['captcha_pic'],
+    r: random(),
+    qs: {
+      size: 'm',
+      id: opt.id
     }
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     const data = {
-      id : opt.id,
-      url : `${Apis['captcha_pic']}?size=m&id=${opt.id}`,
-      body : body
+      id: opt.id,
+      url: `${Apis['captcha_pic']}?size=m&id=${opt.id}`,
+      body: body
     }
     cb(null, data)
   })
@@ -75,24 +78,24 @@ fn.captcha_pic = (opt, cb) => {
 fn.login = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['login'],
-    method : 'POST',
-    form : true,
-    qs : {
-      remember : opt.remember || 'on',
-      source : 'radio',
+    url: Apis['login'],
+    method: 'POST',
+    form: true,
+    qs: {
+      remember: opt.remember || 'on',
+      source: 'radio',
       captcha_solution: opt.captcha_solution,
-      alias : opt.alias,
-      form_password : opt.form_password,
-      captcha_id : opt.captcha_id
+      alias: opt.alias,
+      form_password: opt.form_password,
+      captcha_id: opt.captcha_id
     }
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       const result = {
-        body : body,
-        cookie_string : j.getCookieString(HOST_URL)
+        body: body,
+        cookie_string: j.getCookieString(HOST_URL)
       }
       cb(null, result)
     }
@@ -110,41 +113,48 @@ fn.logout = (cb) => {
   cb = cb || noop
   const j = request.jar()
   req = request.defaults({
-    jar : j
+    jar: j
   })
   cb()
 }
 
-// 获取公共频道列表
-fn.personal_channels = (opt, cb) => {
+// 获取频道
+fn.channels = (opt, cb) => {
   cb = cb || noop
-  const result = [{
-    id : PERSONAL_CHANNEL_ID,
-    name : '私人频道'
-  },{
-    id : PERSONAL_LIKE_CHANNEL_ID,
-    name : '红心频道'
-  }]
-  cb(null, result)
-  return result
+  req({
+    url: Apis['channels'],
+    qs: {
+      specific: opt.specific || 'all',
+    }
+  }, (err, res, body) => {
+    if (err) return cb(err)
+    body = safeParse(res)
+    if (body) {
+      let result = {}
+      if (body.status == true) {
+        result = body.data.channels
+      }
+      cb(null, result)
+    }
+  })
 }
 
 // 获取热门频道
 fn.hot_channels = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['hot_channels'],
-    qs : {
-      start : opt.start || 1,
-      limit : opt.limit || 6
+    url: Apis['hot_channels'],
+    qs: {
+      start: opt.start || 1,
+      limit: opt.limit || 6
     },
-    r : random()
+    r: random()
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       let result = []
-      if(body.status == true) {
+      if (body.status == true) {
         result = body.data.channels
       }
       cb(null, result)
@@ -156,18 +166,18 @@ fn.hot_channels = (opt, cb) => {
 fn.up_trending_channels = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['up_trending_channels'],
-    qs : {
-      start : opt.start || 1,
-      limit : opt.limit || 10
+    url: Apis['up_trending_channels'],
+    qs: {
+      start: opt.start || 1,
+      limit: opt.limit || 10
     },
-    r : random()
+    r: random()
   }, (err, res, body) => {
-    if(err) return cb(err)
-    if(body) {
+    if (err) return cb(err)
+    if (body) {
       body = safeParse(res)
       let result = []
-      if(body.status == true) {
+      if (body.status == true) {
         result = body.data.channels
       }
       cb(null, result)
@@ -179,19 +189,19 @@ fn.up_trending_channels = (opt, cb) => {
 fn.genre_channels = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['genre_channels'],
-    r : random(),
-    qs : {
-      start : opt.start || 1,
-      limit : opt.limit || 10,
-      gid : opt.gid
+    url: Apis['genre_channels'],
+    r: random(),
+    qs: {
+      start: opt.start || 1,
+      limit: opt.limit || 10,
+      gid: opt.gid
     }
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       let result = []
-      if(body.status == true) {
+      if (body.status == true) {
         result = body.data.channels
       }
       cb(null, result)
@@ -203,17 +213,17 @@ fn.genre_channels = (opt, cb) => {
 fn.channel_detail = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['channel_detail'],
-    r : random(),
-    qs : {
-      channel_id : opt.channel_id
+    url: Apis['channel_detail'],
+    r: random(),
+    qs: {
+      channel_id: opt.channel_id
     }
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       let result = null
-      if(body.status == true) {
+      if (body.status == true) {
         result = body.data.channels
       }
       cb(null, result)
@@ -225,19 +235,19 @@ fn.channel_detail = (opt, cb) => {
 fn.search = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['search'],
-    r : random(),
-    qs : {
-      query : opt.query,
-      start : opt.start || 0,
-      limit : opt.limit || 20
+    url: Apis['search'],
+    r: random(),
+    qs: {
+      query: opt.query,
+      start: opt.start || 0,
+      limit: opt.limit || 20
     }
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       let result = {}
-      if(body.status == true) {
+      if (body.status == true) {
         result = body.data
       }
       cb(null, result)
@@ -247,24 +257,26 @@ fn.search = (opt, cb) => {
 
 // 根据频道获取歌曲
 fn.songs = (opt, cb) => {
+  const dqs = {
+    client: 's:mainsite|y:3.0',
+    app_name: 'radio_website',
+    version: 100,
+    channel: 0,
+    kbps: 128,
+    type: 'n'
+  }
+  const qs = Object.assign({}, dqs, opt)
   cb = cb || noop
   req({
-    url : Apis['songs'],
-    r : random(),
-    qs : {
-      from : 'mainsite',
-      channel : opt.channel_id || 0,
-      kbps : opt.kbps || 128,
-      type : opt.type || 'n',
-      pt : opt.pt || '',
-      sid : opt.sid || ''
-    }
+    url: Apis['songs'],
+    r: random(),
+    qs: qs
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       let result = []
-      if(body.r== 0) {
+      if (body.r == 0) {
         result = body.song
       }
       cb(null, result)
@@ -273,7 +285,7 @@ fn.songs = (opt, cb) => {
 }
 
 // 跳过此曲(下一首)
-fn.skip = (opt,cb) => {
+fn.skip = (opt, cb) => {
   opt.type = 's'
   fn.songs(opt, cb)
 }
@@ -297,13 +309,13 @@ fn.never_play_again = (opt, cb) => {
 }
 
 // 获取私人频道歌曲
-fn.personal_channel = (opt,cb) => {
+fn.personal_channel = (opt, cb) => {
   opt.channel_id = PERSONAL_CHANNEL_ID
   fn.songs(opt, cb)
 }
 
 // 获取红心频道歌曲
-fn.personal_like_channel = (opt,cb) => {
+fn.personal_like_channel = (opt, cb) => {
   opt.channel_id = PERSONAL_LIKE_CHANNEL_ID
   fn.songs(opt, cb)
 }
@@ -312,17 +324,17 @@ fn.personal_like_channel = (opt,cb) => {
 fn.fav_channel = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['fav_channel'],
-    r : random(),
-    qs : {
-      cid : opt.channel_id,
+    url: Apis['fav_channel'],
+    r: random(),
+    qs: {
+      cid: opt.channel_id,
     }
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       let result = 0
-      if(body.status== true) {
+      if (body.status == true) {
         result = body.data.res
       }
       cb(null, result)
@@ -334,17 +346,17 @@ fn.fav_channel = (opt, cb) => {
 fn.unfav_channel = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['unfav_channel'],
-    r : random(),
-    qs : {
-      cid : opt.channel_id,
+    url: Apis['unfav_channel'],
+    r: random(),
+    qs: {
+      cid: opt.channel_id,
     }
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       let result = 0
-      if(body.status== true) {
+      if (body.status == true) {
         result = body.data.res
       }
       cb(null, result)
@@ -356,15 +368,15 @@ fn.unfav_channel = (opt, cb) => {
 fn.is_fav_channel = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['is_fav_channel'],
-    r : random(),
-    cid : opt.channel_id
+    url: Apis['is_fav_channel'],
+    r: random(),
+    cid: opt.channel_id
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       let result = false
-      if(body.status == true) {
+      if (body.status == true) {
         result = body.data.res.is_fav
       }
       cb(null, result)
@@ -376,28 +388,28 @@ fn.is_fav_channel = (opt, cb) => {
 fn.fav_channels = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['fav_channels'],
-    r : random()
+    url: Apis['fav_channels'],
+    r: random()
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       cb(null, body.channels || [])
     }
   })
 }
 
 // 换频率报告
-fn.change_channel = (opt,cb) => {
+fn.change_channel = (opt, cb) => {
   cb = cb || noop
   req({
-    url : Apis['change_channel'],
-    r : random(),
-    fcid : opt.fcid,
-    tcid : opt.tcid,
-    area : opt.area || 'system_chls'
+    url: Apis['change_channel'],
+    r: random(),
+    fcid: opt.fcid,
+    tcid: opt.tcid,
+    area: opt.area || 'system_chls'
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     cb(null, body)
   })
 }
@@ -408,12 +420,12 @@ fn.user_info = function(opt, cb) {
   cb = cb || noop
   req({
     url: Apis['user_info'],
-    method : 'GET',
-    form : true
+    method: 'GET',
+    form: true
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       cb(null, body)
     }
   })
@@ -425,20 +437,20 @@ fn.lyric = function(opt, cb) {
   cb = cb || noop
   req({
     url: Apis['lyric'],
-    method : 'GET',
-    form : true,
+    method: 'GET',
+    form: true,
     qs: {
       sid: opt.sid,
       ssid: opt.ssid
     }
   }, (err, res, body) => {
-    if(err) return cb(err)
+    if (err) return cb(err)
     body = safeParse(res)
-    if(body) {
+    if (body) {
       cb(null, body)
     }
   })
 }
 
-
-export default SDK
+export
+default SDK

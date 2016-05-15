@@ -12,6 +12,8 @@ var Apis = {
   captcha_pic: 'misc/captcha',
   // 登录
   login: 'j/login',
+  // 频道
+  channels: 'j/v2/rec_channels',
   // 热门兆赫
   hot_channels: 'j/explore/hot_channels',
   // 上升最快兆赫
@@ -31,17 +33,17 @@ var Apis = {
   // 是否已收藏频道
   is_fav_channel: 'j/explore/is_fav_channel',
   // 根据频道获取歌曲信息
-  songs: 'j/mine/playlist',
+  songs: 'j/v2/playlist',
   // 红心歌曲
   redheart: '/j/v2/redheart/songs',
   // 下一首
-  skip: 'j/mine/playlist',
+  skip: 'j/v2/playlist',
   // 加红心
-  star: 'j/mine/playlist',
+  star: 'j/v2/playlist',
   // 取消红心
-  unstar: 'j/mine/playlist',
+  unstar: 'j/v2/playlist',
   // 不再播放
-  never_play_again: 'j/mine/playlist',
+  never_play_again: 'j/v2/playlist',
   // 用户信息
   user_info: 'j/v2/user_info',
   // 歌词

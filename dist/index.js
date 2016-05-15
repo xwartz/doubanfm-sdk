@@ -135,18 +135,25 @@ fn.logout = function (cb) {
   cb();
 };
 
-// 获取公共频道列表
-fn.personal_channels = function (opt, cb) {
+// 获取频道
+fn.channels = function (opt, cb) {
   cb = cb || noop;
-  var result = [{
-    id: PERSONAL_CHANNEL_ID,
-    name: '私人频道'
-  }, {
-    id: PERSONAL_LIKE_CHANNEL_ID,
-    name: '红心频道'
-  }];
-  cb(null, result);
-  return result;
+  req({
+    url: _apis2.default['channels'],
+    qs: {
+      specific: opt.specific || 'all'
+    }
+  }, function (err, res, body) {
+    if (err) return cb(err);
+    body = safeParse(res);
+    if (body) {
+      var result = {};
+      if (body.status == true) {
+        result = body.data.channels;
+      }
+      cb(null, result);
+    }
+  });
 };
 
 // 获取热门频道
@@ -267,18 +274,20 @@ fn.search = function (opt, cb) {
 
 // 根据频道获取歌曲
 fn.songs = function (opt, cb) {
+  var dqs = {
+    client: 's:mainsite|y:3.0',
+    app_name: 'radio_website',
+    version: 100,
+    channel: 0,
+    kbps: 128,
+    type: 'n'
+  };
+  var qs = Object.assign({}, dqs, opt);
   cb = cb || noop;
   req({
     url: _apis2.default['songs'],
     r: random(),
-    qs: {
-      from: 'mainsite',
-      channel: opt.channel_id || 0,
-      kbps: opt.kbps || 128,
-      type: opt.type || 'n',
-      pt: opt.pt || '',
-      sid: opt.sid || ''
-    }
+    qs: qs
   }, function (err, res, body) {
     if (err) return cb(err);
     body = safeParse(res);
