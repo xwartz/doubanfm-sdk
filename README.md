@@ -1,6 +1,7 @@
-# doubanfm-sdk
+# doubanfm-sdk [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 豆瓣 FM SDK
 
+inspired by https://github.com/sapjax/dbfm-app-sdk
 
 ## 接口
 
@@ -46,3 +47,7 @@
   // 歌词
   lyric: 'j/v2/lyric'
 ```
+
+
+## License
+MIT
