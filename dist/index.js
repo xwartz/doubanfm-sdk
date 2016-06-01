@@ -117,12 +117,6 @@ fn.login = function (opt, cb) {
   });
 };
 
-fn.setCookie = function (cookie, cb) {
-  cb = cb || noop;
-  j.setCookie(cookie, _apis.HOST_URL);
-  cb();
-};
-
 // 退出登录
 fn.logout = function (cb) {
   cb = cb || noop;
@@ -177,104 +171,10 @@ fn.hot_channels = function (opt, cb) {
   });
 };
 
-// 获取上升最快的频道
-fn.up_trending_channels = function (opt, cb) {
-  cb = cb || noop;
-  req({
-    url: _apis2.default['up_trending_channels'],
-    qs: {
-      start: opt.start || 1,
-      limit: opt.limit || 10
-    },
-    r: random()
-  }, function (err, res, body) {
-    if (err) return cb(err);
-    if (body) {
-      body = safeParse(res);
-      var result = [];
-      if (body.status === true) {
-        result = body.data.channels;
-      }
-      cb(null, result);
-    }
-  });
-};
-
-// 根据流派查询频道
-fn.genre_channels = function (opt, cb) {
-  cb = cb || noop;
-  req({
-    url: _apis2.default['genre_channels'],
-    r: random(),
-    qs: {
-      start: opt.start || 1,
-      limit: opt.limit || 10,
-      gid: opt.gid
-    }
-  }, function (err, res, body) {
-    if (err) return cb(err);
-    body = safeParse(res);
-    if (body) {
-      var result = [];
-      if (body.status === true) {
-        result = body.data.channels;
-      }
-      cb(null, result);
-    }
-  });
-};
-
-// 查询频道详细信息
-fn.channel_detail = function (opt, cb) {
-  cb = cb || noop;
-  req({
-    url: _apis2.default['channel_detail'],
-    r: random(),
-    qs: {
-      channel_id: opt.channel_id
-    }
-  }, function (err, res, body) {
-    if (err) return cb(err);
-    body = safeParse(res);
-    if (body) {
-      var result = null;
-      if (body.status === true) {
-        result = body.data.channels;
-      }
-      cb(null, result);
-    }
-  });
-};
-
-// 搜索频道
-fn.search = function (opt, cb) {
-  cb = cb || noop;
-  req({
-    url: _apis2.default['search'],
-    r: random(),
-    qs: {
-      query: opt.query,
-      start: opt.start || 0,
-      limit: opt.limit || 20
-    }
-  }, function (err, res, body) {
-    if (err) return cb(err);
-    body = safeParse(res);
-    if (body) {
-      var result = {};
-      if (body.status === true) {
-        result = body.data;
-      }
-      cb(null, result);
-    }
-  });
-};
-
 // 根据频道获取歌曲
 fn.songs = function (opt, cb) {
   var dqs = {
-    client: 's:mainsite|y:3.0',
-    app_name: 'radio_website',
+    from: 'mainsite',
     version: 100,
     channel: 0,
     kbps: 128,
@@ -335,70 +235,6 @@ fn.personal_like_channel = function (opt, cb) {
   fn.songs(opt, cb);
 };
 
-// 收藏频道
-fn.fav_channel = function (opt, cb) {
-  cb = cb || noop;
-  req({
-    url: _apis2.default['fav_channel'],
-    r: random(),
-    qs: {
-      cid: opt.channel_id
-    }
-  }, function (err, res, body) {
-    if (err) return cb(err);
-    body = safeParse(res);
-    if (body) {
-      var result = 0;
-      if (body.status === true) {
-        result = body.data.res;
-      }
-      cb(null, result);
-    }
-  });
-};
-
-// 取消收藏频道
-fn.unfav_channel = function (opt, cb) {
-  cb = cb || noop;
-  req({
-    url: _apis2.default['unfav_channel'],
-    r: random(),
-    qs: {
-      cid: opt.channel_id
-    }
-  }, function (err, res, body) {
-    if (err) return cb(err);
-    body = safeParse(res);
-    if (body) {
-      var result = 0;
-      if (body.status === true) {
-        result = body.data.res;
-      }
-      cb(null, result);
-    }
-  });
-};
-
-// 是否已收藏频道
-fn.is_fav_channel = function (opt, cb) {
-  cb = cb || noop;
-  req({
-    url: _apis2.default['is_fav_channel'],
-    r: random(),
-    cid: opt.channel_id
-  }, function (err, res, body) {
-    if (err) return cb(err);
-    body = safeParse(res);
-    if (body) {
-      var result = false;
-      if (body.status === true) {
-        result = body.data.res.is_fav;
-      }
-      cb(null, result);
-    }
-  });
-};
-
 // 我收藏的频道
 fn.fav_channels = function (opt, cb) {
   cb = cb || noop;
@@ -411,21 +247,6 @@ fn.fav_channels = function (opt, cb) {
     if (body) {
       cb(null, body.channels || []);
     }
-  });
-};
-
-// 换频率报告
-fn.change_channel = function (opt, cb) {
-  cb = cb || noop;
-  req({
-    url: _apis2.default['change_channel'],
-    r: random(),
-    fcid: opt.fcid,
-    tcid: opt.tcid,
-    area: opt.area || 'system_chls'
-  }, function (err, res, body) {
-    if (err) return cb(err);
-    cb(null, body);
   });
 };
 
@@ -445,7 +266,7 @@ fn.user_info = function (opt, cb) {
   });
 };
 
-// 获取用户信息
+// 获取歌曲信息
 fn.lyric = function (opt, cb) {
   cb = cb || noop;
   req({

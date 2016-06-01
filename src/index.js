@@ -100,12 +100,6 @@ fn.login = (opt, cb) => {
   })
 }
 
-fn.setCookie = (cookie, cb) => {
-  cb = cb || noop
-  j.setCookie(cookie, HOST_URL)
-  cb()
-}
-
 // 退出登录
 fn.logout = (cb) => {
   cb = cb || noop
@@ -154,99 +148,6 @@ fn.hot_channels = (opt, cb) => {
       let result = []
       if (body.status === true) {
         result = body.data.channels
-      }
-      cb(null, result)
-    }
-  })
-}
-
-// 获取上升最快的频道
-fn.up_trending_channels = (opt, cb) => {
-  cb = cb || noop
-  req({
-    url: Apis['up_trending_channels'],
-    qs: {
-      start: opt.start || 1,
-      limit: opt.limit || 10
-    },
-    r: random()
-  }, (err, res, body) => {
-    if (err) return cb(err)
-    if (body) {
-      body = safeParse(res)
-      let result = []
-      if (body.status === true) {
-        result = body.data.channels
-      }
-      cb(null, result)
-    }
-  })
-}
-
-// 根据流派查询频道
-fn.genre_channels = (opt, cb) => {
-  cb = cb || noop
-  req({
-    url: Apis['genre_channels'],
-    r: random(),
-    qs: {
-      start: opt.start || 1,
-      limit: opt.limit || 10,
-      gid: opt.gid
-    }
-  }, (err, res, body) => {
-    if (err) return cb(err)
-    body = safeParse(res)
-    if (body) {
-      let result = []
-      if (body.status === true) {
-        result = body.data.channels
-      }
-      cb(null, result)
-    }
-  })
-}
-
-// 查询频道详细信息
-fn.channel_detail = (opt, cb) => {
-  cb = cb || noop
-  req({
-    url: Apis['channel_detail'],
-    r: random(),
-    qs: {
-      channel_id: opt.channel_id
-    }
-  }, (err, res, body) => {
-    if (err) return cb(err)
-    body = safeParse(res)
-    if (body) {
-      let result = null
-      if (body.status === true) {
-        result = body.data.channels
-      }
-      cb(null, result)
-    }
-  })
-}
-
-// 搜索频道
-fn.search = (opt, cb) => {
-  cb = cb || noop
-  req({
-    url: Apis['search'],
-    r: random(),
-    qs: {
-      query: opt.query,
-      start: opt.start || 0,
-      limit: opt.limit || 20
-    }
-  }, (err, res, body) => {
-    if (err) return cb(err)
-    body = safeParse(res)
-    if (body) {
-      let result = {}
-      if (body.status === true) {
-        result = body.data
       }
       cb(null, result)
     }
@@ -318,70 +219,6 @@ fn.personal_like_channel = (opt, cb) => {
   fn.songs(opt, cb)
 }
 
-// 收藏频道
-fn.fav_channel = (opt, cb) => {
-  cb = cb || noop
-  req({
-    url: Apis['fav_channel'],
-    r: random(),
-    qs: {
-      cid: opt.channel_id
-    }
-  }, (err, res, body) => {
-    if (err) return cb(err)
-    body = safeParse(res)
-    if (body) {
-      let result = 0
-      if (body.status === true) {
-        result = body.data.res
-      }
-      cb(null, result)
-    }
-  })
-}
-
-// 取消收藏频道
-fn.unfav_channel = (opt, cb) => {
-  cb = cb || noop
-  req({
-    url: Apis['unfav_channel'],
-    r: random(),
-    qs: {
-      cid: opt.channel_id
-    }
-  }, (err, res, body) => {
-    if (err) return cb(err)
-    body = safeParse(res)
-    if (body) {
-      let result = 0
-      if (body.status === true) {
-        result = body.data.res
-      }
-      cb(null, result)
-    }
-  })
-}
-
-// 是否已收藏频道
-fn.is_fav_channel = (opt, cb) => {
-  cb = cb || noop
-  req({
-    url: Apis['is_fav_channel'],
-    r: random(),
-    cid: opt.channel_id
-  }, (err, res, body) => {
-    if (err) return cb(err)
-    body = safeParse(res)
-    if (body) {
-      let result = false
-      if (body.status === true) {
-        result = body.data.res.is_fav
-      }
-      cb(null, result)
-    }
-  })
-}
-
 // 我收藏的频道
 fn.fav_channels = (opt, cb) => {
   cb = cb || noop
@@ -394,21 +231,6 @@ fn.fav_channels = (opt, cb) => {
     if (body) {
       cb(null, body.channels || [])
     }
-  })
-}
-
-// 换频率报告
-fn.change_channel = (opt, cb) => {
-  cb = cb || noop
-  req({
-    url: Apis['change_channel'],
-    r: random(),
-    fcid: opt.fcid,
-    tcid: opt.tcid,
-    area: opt.area || 'system_chls'
-  }, (err, res, body) => {
-    if (err) return cb(err)
-    cb(null, body)
   })
 }
 
@@ -428,7 +250,7 @@ fn.user_info = (opt, cb) => {
   })
 }
 
-// 获取用户信息
+// 获取歌曲信息
 fn.lyric = (opt, cb) => {
   cb = cb || noop
   req({
