@@ -1,0 +1,1466 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for dist/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">dist/</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">32.41% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>70/216</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.67% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>13/150</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">23.4% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>11/47</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">34.85% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>69/198</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+&nbsp;
+var _request = require('request');
+&nbsp;
+var _request2 = _interopRequireDefault(_request);
+&nbsp;
+var _header = require('./header');
+&nbsp;
+var _header2 = _interopRequireDefault(_header);
+&nbsp;
+var _apis = require('./apis');
+&nbsp;
+var _apis2 = _interopRequireDefault(_apis);
+&nbsp;
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }
+&nbsp;
+// 私人频道id
+&nbsp;
+&nbsp;
+// 自定义请求头部
+var PERSONAL_CHANNEL_ID = 0;
+&nbsp;
+// 红心频道id
+&nbsp;
+// api
+var PERSONAL_LIKE_CHANNEL_ID = -3;
+&nbsp;
+// 开启cookie
+var j = _request2.default.jar();
+&nbsp;
+var req = _request2.default.defaults({
+  jar: j,
+  headers: _header2.default
+});
+&nbsp;
+var noop = <span class="fstat-no" title="function not covered" >function noop() {</span>};
+var random = function random() {
+  return Date.now();
+};
+&nbsp;
+var safeParse = function safeParse(res) {
+  res = res.toJSON();
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (res.statusCode === 200) {
+    return JSON.parse(res.body);
+  } else {
+<span class="cstat-no" title="statement not covered" >    console.error(res.request.uri, res.body);</span>
+  }
+};
+&nbsp;
+var SDK = function SDK() {};
+&nbsp;
+var fn = SDK.prototype;
+&nbsp;
+// 获取验证码id
+fn.captcha_id = function (opt, cb) {
+  cb = cb || <span class="branch-1 cbranch-no" title="branch not covered" >noop;</span>
+  req({
+    url: _apis2.default['captcha_id'],
+    r: random()
+  }, function (err, res, body) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span>
+    var id = body.replace(/"/g, '');
+    cb(null, id);
+  });
+};
+&nbsp;
+// 获取验证码图片 Content-Type:image/jpeg
+fn.captcha_pic = function (opt, cb) {
+  cb = cb || <span class="branch-1 cbranch-no" title="branch not covered" >noop;</span>
+  req({
+    url: _apis2.default['captcha_pic'],
+    r: random(),
+    qs: {
+      size: 'm',
+      id: opt.id
+    }
+  }, function (err, res, body) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span>
+    var data = {
+      id: opt.id,
+      url: _apis2.default['captcha_pic'] + '?size=m&amp;id=' + opt.id,
+      body: body
+    };
+    cb(null, data);
+  });
+};
+&nbsp;
+// 登录
+fn.login = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['login'],
+    method: 'POST',
+    form: true,
+    qs: {
+      remember: opt.remember || 'on',
+      source: 'radio',
+      captcha_solution: opt.captcha_solution,
+      alias: opt.alias,
+      form_password: opt.form_password,
+      captcha_id: opt.captcha_id
+    }
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      var result = {</span>
+        body: body,
+        cookie_string: j.getCookieString(_apis.HOST_URL)
+      };
+<span class="cstat-no" title="statement not covered" >      cb(null, result);</span>
+    }
+  });
+};
+&nbsp;
+fn.setCookie = <span class="fstat-no" title="function not covered" >function (cookie, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  j.setCookie(cookie, _apis.HOST_URL);</span>
+<span class="cstat-no" title="statement not covered" >  cb();</span>
+};
+&nbsp;
+// 退出登录
+fn.logout = <span class="fstat-no" title="function not covered" >function (cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  var j = _request2.default.jar();</span>
+<span class="cstat-no" title="statement not covered" >  req = _request2.default.defaults({</span>
+    jar: j
+  });
+<span class="cstat-no" title="statement not covered" >  cb();</span>
+};
+&nbsp;
+// 获取频道
+fn.channels = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['channels'],
+    qs: {
+      specific: opt.specific || 'all'
+    }
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      var result = {};</span>
+<span class="cstat-no" title="statement not covered" >      if (body.status === true) {</span>
+<span class="cstat-no" title="statement not covered" >        result = body.data.channels;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      cb(null, result);</span>
+    }
+  });
+};
+&nbsp;
+// 获取热门频道
+fn.hot_channels = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['hot_channels'],
+    qs: {
+      start: opt.start || 1,
+      limit: opt.limit || 6
+    },
+    r: random()
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      var result = [];</span>
+<span class="cstat-no" title="statement not covered" >      if (body.status === true) {</span>
+<span class="cstat-no" title="statement not covered" >        result = body.data.channels;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      cb(null, result);</span>
+    }
+  });
+};
+&nbsp;
+// 获取上升最快的频道
+fn.up_trending_channels = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['up_trending_channels'],
+    qs: {
+      start: opt.start || 1,
+      limit: opt.limit || 10
+    },
+    r: random()
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >      var result = [];</span>
+<span class="cstat-no" title="statement not covered" >      if (body.status === true) {</span>
+<span class="cstat-no" title="statement not covered" >        result = body.data.channels;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      cb(null, result);</span>
+    }
+  });
+};
+&nbsp;
+// 根据流派查询频道
+fn.genre_channels = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['genre_channels'],
+    r: random(),
+    qs: {
+      start: opt.start || 1,
+      limit: opt.limit || 10,
+      gid: opt.gid
+    }
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      var result = [];</span>
+<span class="cstat-no" title="statement not covered" >      if (body.status === true) {</span>
+<span class="cstat-no" title="statement not covered" >        result = body.data.channels;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      cb(null, result);</span>
+    }
+  });
+};
+&nbsp;
+// 查询频道详细信息
+fn.channel_detail = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['channel_detail'],
+    r: random(),
+    qs: {
+      channel_id: opt.channel_id
+    }
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      var result = null;</span>
+<span class="cstat-no" title="statement not covered" >      if (body.status === true) {</span>
+<span class="cstat-no" title="statement not covered" >        result = body.data.channels;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      cb(null, result);</span>
+    }
+  });
+};
+&nbsp;
+// 搜索频道
+fn.search = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['search'],
+    r: random(),
+    qs: {
+      query: opt.query,
+      start: opt.start || 0,
+      limit: opt.limit || 20
+    }
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      var result = {};</span>
+<span class="cstat-no" title="statement not covered" >      if (body.status === true) {</span>
+<span class="cstat-no" title="statement not covered" >        result = body.data;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      cb(null, result);</span>
+    }
+  });
+};
+&nbsp;
+// 根据频道获取歌曲
+fn.songs = function (opt, cb) {
+  var dqs = {
+    client: 's:mainsite|y:3.0',
+    app_name: 'radio_website',
+    version: 100,
+    channel: 0,
+    kbps: 128,
+    type: 'n'
+  };
+  var qs = Object.assign({}, dqs, opt);
+  cb = cb || <span class="branch-1 cbranch-no" title="branch not covered" >noop;</span>
+  req({
+    url: _apis2.default['songs'],
+    r: random(),
+    qs: qs
+  }, function (err, res, body) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span>
+    body = safeParse(res);
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (body) {
+      var result = [];
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (body.r === 0) {
+<span class="cstat-no" title="statement not covered" >        result = body.song;</span>
+      }
+      cb(null, result);
+    }
+  });
+};
+&nbsp;
+// 跳过此曲(下一首)
+fn.skip = function (opt, cb) {
+  opt.type = 's';
+  fn.songs(opt, cb);
+};
+&nbsp;
+// 加红心
+fn.star = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  opt.type = 'r';</span>
+<span class="cstat-no" title="statement not covered" >  fn.songs(opt, cb);</span>
+};
+&nbsp;
+// 取消红心
+fn.unstar = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  opt.type = 'u';</span>
+<span class="cstat-no" title="statement not covered" >  fn.songs(opt, cb);</span>
+};
+&nbsp;
+// 不再播放
+fn.never_play_again = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  opt.type = 'b';</span>
+<span class="cstat-no" title="statement not covered" >  fn.songs(opt, cb);</span>
+};
+&nbsp;
+// 获取私人频道歌曲
+fn.personal_channel = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  opt.channel_id = PERSONAL_CHANNEL_ID;</span>
+<span class="cstat-no" title="statement not covered" >  fn.songs(opt, cb);</span>
+};
+&nbsp;
+// 获取红心频道歌曲
+fn.personal_like_channel = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  opt.channel_id = PERSONAL_LIKE_CHANNEL_ID;</span>
+<span class="cstat-no" title="statement not covered" >  fn.songs(opt, cb);</span>
+};
+&nbsp;
+// 收藏频道
+fn.fav_channel = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['fav_channel'],
+    r: random(),
+    qs: {
+      cid: opt.channel_id
+    }
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      var result = 0;</span>
+<span class="cstat-no" title="statement not covered" >      if (body.status === true) {</span>
+<span class="cstat-no" title="statement not covered" >        result = body.data.res;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      cb(null, result);</span>
+    }
+  });
+};
+&nbsp;
+// 取消收藏频道
+fn.unfav_channel = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['unfav_channel'],
+    r: random(),
+    qs: {
+      cid: opt.channel_id
+    }
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      var result = 0;</span>
+<span class="cstat-no" title="statement not covered" >      if (body.status === true) {</span>
+<span class="cstat-no" title="statement not covered" >        result = body.data.res;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      cb(null, result);</span>
+    }
+  });
+};
+&nbsp;
+// 是否已收藏频道
+fn.is_fav_channel = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['is_fav_channel'],
+    r: random(),
+    cid: opt.channel_id
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      var result = false;</span>
+<span class="cstat-no" title="statement not covered" >      if (body.status === true) {</span>
+<span class="cstat-no" title="statement not covered" >        result = body.data.res.is_fav;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      cb(null, result);</span>
+    }
+  });
+};
+&nbsp;
+// 我收藏的频道
+fn.fav_channels = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['fav_channels'],
+    r: random()
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      cb(null, body.channels || []);</span>
+    }
+  });
+};
+&nbsp;
+// 换频率报告
+fn.change_channel = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['change_channel'],
+    r: random(),
+    fcid: opt.fcid,
+    tcid: opt.tcid,
+    area: opt.area || 'system_chls'
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    cb(null, body);</span>
+  });
+};
+&nbsp;
+// 获取用户信息
+fn.user_info = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['user_info'],
+    method: 'GET',
+    form: true
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      cb(null, body);</span>
+    }
+  });
+};
+&nbsp;
+// 获取用户信息
+fn.lyric = <span class="fstat-no" title="function not covered" >function (opt, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || noop;</span>
+<span class="cstat-no" title="statement not covered" >  req({</span>
+    url: _apis2.default['lyric'],
+    method: 'GET',
+    form: true,
+    qs: {
+      sid: opt.sid,
+      ssid: opt.ssid
+    }
+  }, <span class="fstat-no" title="function not covered" >function (err, res, body) {</span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    body = safeParse(res);</span>
+<span class="cstat-no" title="statement not covered" >    if (body) {</span>
+<span class="cstat-no" title="statement not covered" >      cb(null, body);</span>
+    }
+  });
+};
+&nbsp;
+exports.default = SDK;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 01 2016 11:19:55 GMT+0800 (CST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
