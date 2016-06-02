@@ -8,6 +8,7 @@ describe('#captcha', () => {
     it('it should return a string', (done) => {
       sdk.captcha_id(null, (err, id) => {
         if (err) throw err
+
         expect(id).to.be.a('string')
         done()
       })
