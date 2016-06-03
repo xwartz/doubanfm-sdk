@@ -1,4 +1,6 @@
 # doubanfm-sdk [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
+[![codecov](https://codecov.io/gh/xwartz/doubanfm-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/xwartz/doubanfm-sdk)
+
 豆瓣 FM SDK
 
 inspired by https://github.com/sapjax/dbfm-app-sdk
@@ -6,7 +8,7 @@ inspired by https://github.com/sapjax/dbfm-app-sdk
 ## 接口
 
 ```js
-// 验证码id
+  // 验证码id
   captcha_id: 'j/new_captcha',
   // 验证码图片
   captcha_pic: 'misc/captcha',
