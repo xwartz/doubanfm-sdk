@@ -4,6 +4,10 @@ node_js:
   - "5"
   - "node"
 
+env:
+  global:
+    - CODECOV_TOKEN: f0a0b002-8fa2-494c-a84b-fecfd62c5ca6
+
 cache:
   directories:
     - node_modules
