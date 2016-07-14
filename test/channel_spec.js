@@ -14,14 +14,13 @@ describe('#channel', () => {
     })
   })
 
-  describe('#hot_channels()', () => {
+  describe('#hotChannels()', () => {
     it('it should return an array', (done) => {
-      sdk.hot_channels({}, (err, data) => {
+      sdk.hotChannels({}, (err, data) => {
         if (err) throw err
         expect(data).to.be.an('array')
         done()
       })
     })
   })
-
 })

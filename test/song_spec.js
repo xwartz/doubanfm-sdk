@@ -34,9 +34,9 @@ describe('#song', () => {
     })
   })
 
-  describe('#never_play_again()', () => {
+  describe('#neverPlayAgain()', () => {
     it('it should return an array', (done) => {
-      sdk.never_play_again({ channel: '1', sid: '1395259' }, (err, data) => {
+      sdk.neverPlayAgain({ channel: '1', sid: '1395259' }, (err, data) => {
         if (err) throw err
         expect(data).to.be.an('array')
         done()
@@ -44,9 +44,9 @@ describe('#song', () => {
     })
   })
 
-  describe('#personal_channel()', () => {
+  describe('#personalChannel()', () => {
     it('it should return an array', (done) => {
-      sdk.personal_channel({}, (err, data) => {
+      sdk.personalChannel({}, (err, data) => {
         if (err) throw err
         expect(data).to.be.an('array')
         done()
@@ -54,9 +54,9 @@ describe('#song', () => {
     })
   })
 
-  describe('#personal_like_channel()', () => {
+  describe('#personalLikeChannel()', () => {
     it('it should return an array', (done) => {
-      sdk.personal_like_channel({}, (err, data) => {
+      sdk.personalLikeChannel({}, (err, data) => {
         if (err) throw err
         expect(data).to.be.an('array')
         done()
@@ -64,4 +64,13 @@ describe('#song', () => {
     })
   })
 
+  describe('#favChannels()', () => {
+    it('it should return an array', (done) => {
+      sdk.favChannels({}, (err, data) => {
+        if (err) throw err
+        expect(data).to.be.an('array')
+        done()
+      })
+    })
+  })
 })

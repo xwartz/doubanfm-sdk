@@ -1,4 +1,4 @@
-# doubanfm-sdk [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)[![Build Status](https://travis-ci.org/xwartz/doubanfm-sdk.svg?branch=master)](https://travis-ci.org/xwartz/doubanfm-sdk)[![codecov](https://codecov.io/gh/xwartz/doubanfm-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/xwartz/doubanfm-sdk)
+# doubanfm-sdk [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/) [![Build Status](https://travis-ci.org/xwartz/doubanfm-sdk.svg?branch=master)](https://travis-ci.org/xwartz/doubanfm-sdk) [![codecov](https://codecov.io/gh/xwartz/doubanfm-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/xwartz/doubanfm-sdk)
 
 豆瓣 FM SDK
 

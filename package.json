@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "eslint src *.js",
     "build": "babel src -d dist",
-    "test": "mocha --compilers js:babel-register --recursive -t 8000 test/*.js",
-    "cover": "node_modules/.bin/babel-node node_modules/.bin/istanbul cover _mocha --report lcovonly -- -R spec -t 8000",
+    "test": "mocha --compilers js:babel-register --recursive -t 10000 test/*.js",
+    "cover": "node_modules/.bin/babel-node node_modules/.bin/istanbul cover _mocha --report lcovonly -- -R spec -t 10000",
     "codecov": "codecov -t f0a0b002-8fa2-494c-a84b-fecfd62c5ca6"
   },
   "repository": {
