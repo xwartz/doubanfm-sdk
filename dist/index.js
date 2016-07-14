@@ -56,36 +56,15 @@ var SDK = function SDK() {};
 var fn = SDK.prototype;
 
 // 获取验证码id
-fn.captcha_id = function (opt, cb) {
+fn.captchaId = function (opt, cb) {
   cb = cb || noop;
   req({
-    url: _apis2.default['captcha_id'],
+    url: _apis2.default['captchaId'],
     r: random()
   }, function (err, res, body) {
     if (err) return cb(err);
     var id = body.replace(/"/g, '');
     cb(null, id);
-  });
-};
-
-// 获取验证码图片 Content-Type:image/jpeg
-fn.captcha_pic = function (opt, cb) {
-  cb = cb || noop;
-  req({
-    url: _apis2.default['captcha_pic'],
-    r: random(),
-    qs: {
-      size: 'm',
-      id: opt.id
-    }
-  }, function (err, res, body) {
-    if (err) return cb(err);
-    var data = {
-      id: opt.id,
-      url: _apis2.default['captcha_pic'] + '?size=m&id=' + opt.id,
-      body: body
-    };
-    cb(null, data);
   });
 };
 
@@ -149,10 +128,10 @@ fn.channels = function (opt, cb) {
 };
 
 // 获取热门频道
-fn.hot_channels = function (opt, cb) {
+fn.hotChannels = function (opt, cb) {
   cb = cb || noop;
   req({
-    url: _apis2.default['hot_channels'],
+    url: _apis2.default['hotChannels'],
     qs: {
       start: opt.start || 1,
       limit: opt.limit || 6
@@ -174,7 +153,8 @@ fn.hot_channels = function (opt, cb) {
 // 根据频道获取歌曲
 fn.songs = function (opt, cb) {
   var dqs = {
-    from: 'mainsite',
+    client: 's:mainsite|y:3.0',
+    app_name: 'radio_website',
     version: 100,
     channel: 0,
     kbps: 128,
@@ -218,28 +198,28 @@ fn.unstar = function (opt, cb) {
 };
 
 // 不再播放
-fn.never_play_again = function (opt, cb) {
+fn.neverPlayAgain = function (opt, cb) {
   opt.type = 'b';
   fn.songs(opt, cb);
 };
 
 // 获取私人频道歌曲
-fn.personal_channel = function (opt, cb) {
+fn.personalChannel = function (opt, cb) {
   opt.channel_id = PERSONAL_CHANNEL_ID;
   fn.songs(opt, cb);
 };
 
 // 获取红心频道歌曲
-fn.personal_like_channel = function (opt, cb) {
+fn.personalLikeChannel = function (opt, cb) {
   opt.channel_id = PERSONAL_LIKE_CHANNEL_ID;
   fn.songs(opt, cb);
 };
 
 // 我收藏的频道
-fn.fav_channels = function (opt, cb) {
+fn.favChannels = function (opt, cb) {
   cb = cb || noop;
   req({
-    url: _apis2.default['fav_channels'],
+    url: _apis2.default['favChannels'],
     r: random()
   }, function (err, res, body) {
     if (err) return cb(err);
@@ -251,10 +231,10 @@ fn.fav_channels = function (opt, cb) {
 };
 
 // 获取用户信息
-fn.user_info = function (opt, cb) {
+fn.userInfo = function (opt, cb) {
   cb = cb || noop;
   req({
-    url: _apis2.default['user_info'],
+    url: _apis2.default['userInfo'],
     method: 'GET',
     form: true
   }, function (err, res, body) {

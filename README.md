@@ -6,7 +6,7 @@ inspired by https://github.com/sapjax/dbfm-app-sdk
 
 ## 接口
 
-`captcha_id`: 获取验证码id
+`captchaId`: 获取验证码id
 
 `login`: 登录
 
@@ -14,15 +14,15 @@ inspired by https://github.com/sapjax/dbfm-app-sdk
 
 `channels`: 获取频道
 
-`hot_channels`: 获取热门频道
+`hotChannels`: 获取热门频道
 
 `star`: 加心
 
 `unstar`: 取消红心
 
-`never_play_again`: 不再播放
+`neverPlayAgain`: 不再播放
 
-`user_info`: 获取用户信息
+`userInfo`: 获取用户信息
 
 `lyric`: 获取歌词
 

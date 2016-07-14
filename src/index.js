@@ -3,10 +3,7 @@ import request from 'request'
 // 自定义请求头部
 import customHeaders from './header'
 // api
-import Apis, {
-  HOST_URL
-}
-from './apis'
+import Apis, { HOST_URL } from './apis'
 
 // 私人频道id
 const PERSONAL_CHANNEL_ID = 0
@@ -39,36 +36,15 @@ const SDK = () => {}
 let fn = SDK.prototype
 
 // 获取验证码id
-fn.captcha_id = (opt, cb) => {
+fn.captchaId = (opt, cb) => {
   cb = cb || noop
   req({
-    url: Apis['captcha_id'],
+    url: Apis['captchaId'],
     r: random()
   }, (err, res, body) => {
     if (err) return cb(err)
     const id = body.replace(/"/g, '')
     cb(null, id)
-  })
-}
-
-// 获取验证码图片 Content-Type:image/jpeg
-fn.captcha_pic = (opt, cb) => {
-  cb = cb || noop
-  req({
-    url: Apis['captcha_pic'],
-    r: random(),
-    qs: {
-      size: 'm',
-      id: opt.id
-    }
-  }, (err, res, body) => {
-    if (err) return cb(err)
-    const data = {
-      id: opt.id,
-      url: `${Apis['captcha_pic']}?size=m&id=${opt.id}`,
-      body: body
-    }
-    cb(null, data)
   })
 }
 
@@ -132,10 +108,10 @@ fn.channels = (opt, cb) => {
 }
 
 // 获取热门频道
-fn.hot_channels = (opt, cb) => {
+fn.hotChannels = (opt, cb) => {
   cb = cb || noop
   req({
-    url: Apis['hot_channels'],
+    url: Apis['hotChannels'],
     qs: {
       start: opt.start || 1,
       limit: opt.limit || 6
@@ -202,28 +178,28 @@ fn.unstar = (opt, cb) => {
 }
 
 // 不再播放
-fn.never_play_again = (opt, cb) => {
+fn.neverPlayAgain = (opt, cb) => {
   opt.type = 'b'
   fn.songs(opt, cb)
 }
 
 // 获取私人频道歌曲
-fn.personal_channel = (opt, cb) => {
+fn.personalChannel = (opt, cb) => {
   opt.channel_id = PERSONAL_CHANNEL_ID
   fn.songs(opt, cb)
 }
 
 // 获取红心频道歌曲
-fn.personal_like_channel = (opt, cb) => {
+fn.personalLikeChannel = (opt, cb) => {
   opt.channel_id = PERSONAL_LIKE_CHANNEL_ID
   fn.songs(opt, cb)
 }
 
 // 我收藏的频道
-fn.fav_channels = (opt, cb) => {
+fn.favChannels = (opt, cb) => {
   cb = cb || noop
   req({
-    url: Apis['fav_channels'],
+    url: Apis['favChannels'],
     r: random()
   }, (err, res, body) => {
     if (err) return cb(err)
@@ -235,10 +211,10 @@ fn.fav_channels = (opt, cb) => {
 }
 
 // 获取用户信息
-fn.user_info = (opt, cb) => {
+fn.userInfo = (opt, cb) => {
   cb = cb || noop
   req({
-    url: Apis['user_info'],
+    url: Apis['userInfo'],
     method: 'GET',
     form: true
   }, (err, res, body) => {
