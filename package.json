@@ -22,7 +22,6 @@
   "author": "xwartz",
   "license": "MIT",
   "dependencies": {
-    "karma-es6-shim": "^1.0.0",
     "request": "^2.72.0"
   },
   "devDependencies": {
