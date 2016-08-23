@@ -153,11 +153,12 @@ fn.hotChannels = function (opt, cb) {
 // 根据频道获取歌曲
 fn.songs = function (opt, cb) {
   var dqs = {
-    client: 's:mainsite|y:3.0',
+    from: 'mainsite',
     app_name: 'radio_website',
     version: 100,
     channel: 0,
-    kbps: 128,
+    pb: 128,
+    pt: 12.8,
     type: 'n'
   };
   var qs = Object.assign({}, dqs, opt);
