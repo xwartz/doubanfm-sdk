@@ -1,4 +1,5 @@
 import request from 'request'
+import objectid from 'objectid'
 
 // 自定义请求头部
 import customHeaders from './header'
@@ -138,8 +139,8 @@ fn.songs = (opt, cb) => {
     version: 100,
     channel: 0,
     pb: 128,
-    pt: 12.8,
-    type: 'n'
+    type: 'n',
+    r: objectid()
   }
   const qs = Object.assign({}, dqs, opt)
   cb = cb || noop
