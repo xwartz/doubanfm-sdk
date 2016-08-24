@@ -1,7 +1,7 @@
 {
   "name": "doubanfm-sdk",
-  "version": "2.0.3",
-  "description": "douban fm web sdk",
+  "version": "2.0.4",
+  "description": "douban.fm sdk (Nodejs)",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint src *.js",
