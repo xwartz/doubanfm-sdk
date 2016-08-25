@@ -1,10 +1,11 @@
 # doubanfm-sdk
 
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/) [![Build Status](https://travis-ci.org/xwartz/doubanfm-sdk.svg?branch=master)](https://travis-ci.org/xwartz/doubanfm-sdk) [![codecov](https://codecov.io/gh/xwartz/doubanfm-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/xwartz/doubanfm-sdk)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/) 
+[![Build Status](https://travis-ci.org/xwartz/doubanfm-sdk.svg?branch=master)](https://travis-ci.org/xwartz/doubanfm-sdk) 
+[![codecov](https://codecov.io/gh/xwartz/doubanfm-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/xwartz/doubanfm-sdk) 
+[![npm](https://img.shields.io/npm/v/doubanfm-sdk.svg)](https://www.npmjs.com/package/doubanfm-sdk)
 
 豆瓣 FM SDK
-
-inspired by https://github.com/sapjax/dbfm-app-sdk
 
 ## 使用
 
