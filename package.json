@@ -1,6 +1,6 @@
 {
   "name": "doubanfm-sdk",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "douban.fm sdk (Nodejs)",
   "main": "dist/index.js",
   "scripts": {
