@@ -1,5 +1,5 @@
 import request from 'request'
-import uuid from 'node-uuid'
+import uuid from 'uuid'
 
 // 自定义请求头部
 import customHeaders from './header'
