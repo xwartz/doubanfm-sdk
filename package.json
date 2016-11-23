@@ -22,8 +22,8 @@
   "author": "xwartz",
   "license": "MIT",
   "dependencies": {
-    "node-uuid": "^1.4.7",
-    "request": "^2.72.0"
+    "request": "^2.72.0",
+    "uuid": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
